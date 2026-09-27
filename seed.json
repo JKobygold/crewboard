@@ -1,0 +1,829 @@
+{
+ "people": [
+  {
+   "id": "u_jordan",
+   "name": "Jordan Lee",
+   "color": "#579bfc",
+   "role": "Organizer"
+  },
+  {
+   "id": "u_taylor",
+   "name": "Taylor Kim",
+   "color": "#4f8ef7",
+   "role": ""
+  },
+  {
+   "id": "u_sam",
+   "name": "Sam Patel",
+   "color": "#9d50dd",
+   "role": ""
+  },
+  {
+   "id": "u_casey",
+   "name": "Casey Morgan",
+   "color": "#e2a91b",
+   "role": ""
+  },
+  {
+   "id": "u_riley",
+   "name": "Riley Brooks",
+   "color": "#e2445c",
+   "role": ""
+  },
+  {
+   "id": "u_morgan",
+   "name": "Morgan Diaz",
+   "color": "#00a9a0",
+   "role": "",
+   "invited": true
+  }
+ ],
+ "workspace": {
+  "name": "Main workspace",
+  "order": [
+   "d_main",
+   "b_hackathon",
+   "b_general"
+  ],
+  "dashboards": [
+   {
+    "id": "d_main",
+    "name": "Dashboard and reporting",
+    "boardIds": [
+     "b_hackathon",
+     "b_general"
+    ]
+   }
+  ]
+ },
+ "boards": {
+  "b_hackathon": {
+   "id": "b_hackathon",
+   "name": "Community Hackathon",
+   "kind": "board",
+   "description": "Manage any type of project. Assign owners, set timelines and keep track of where your project stands.",
+   "createdAt": 1789145040000,
+   "views": [
+    "table",
+    "cards"
+   ],
+   "columns": [
+    {
+     "type": "owners",
+     "title": "Owner"
+    },
+    {
+     "type": "status",
+     "title": "Status"
+    },
+    {
+     "type": "due",
+     "title": "Due date"
+    }
+   ],
+   "tagOptions": [],
+   "groups": [
+    {
+     "id": "g_hack",
+     "name": "Hackathon",
+     "color": "#579bfc"
+    },
+    {
+     "id": "g_hack_done",
+     "name": "Completed",
+     "color": "#00c875"
+    }
+   ],
+   "tasks": [
+    {
+     "id": "t_h00",
+     "groupId": "g_hack",
+     "name": "Create preparation sheet for all sponsorships",
+     "owners": [
+      "u_taylor"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "2026-09-14",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789145436000
+    },
+    {
+     "id": "t_h01",
+     "groupId": "g_hack",
+     "name": "Create physical outline of room for event. For tables",
+     "owners": [
+      "u_taylor"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "2026-09-14",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789145439000
+    },
+    {
+     "id": "t_h02",
+     "groupId": "g_hack",
+     "name": "volunteers",
+     "owners": [
+      "u_jordan",
+      "u_riley"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [
+      {
+       "name": "set up meeting",
+       "owners": [
+        "u_taylor"
+       ],
+       "status": "done",
+       "due": "",
+       "id": "s_h02_0"
+      }
+     ],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789145478000
+    },
+    {
+     "id": "t_h03",
+     "groupId": "g_hack",
+     "name": "Fulfill sponsor's asks",
+     "owners": [
+      "u_casey"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [
+      {
+       "name": "Write demo",
+       "owners": [],
+       "status": "",
+       "due": "",
+       "id": "s_h03_0"
+      },
+      {
+       "name": "make sponsor Discord post",
+       "owners": [
+        "u_taylor"
+       ],
+       "status": "working",
+       "due": "",
+       "id": "s_h03_1"
+      }
+     ],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789156468000
+    },
+    {
+     "id": "t_h04",
+     "groupId": "g_hack",
+     "name": "Send sponsor the coffee vendor bill",
+     "owners": [
+      "u_jordan"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789156478000
+    },
+    {
+     "id": "t_h05",
+     "groupId": "g_hack",
+     "name": "Reorganize the sponsor section of the event page",
+     "owners": [
+      "u_taylor"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789164032000
+    },
+    {
+     "id": "t_h06",
+     "groupId": "g_hack",
+     "name": "Send venue contact the full list",
+     "owners": [
+      "u_taylor"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "2026-09-16",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789353801000
+    },
+    {
+     "id": "t_h07",
+     "groupId": "g_hack",
+     "name": "add before and after email follow-ups and announcements to the event page",
+     "owners": [
+      "u_taylor"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "2026-09-18",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789353816000
+    },
+    {
+     "id": "t_h08",
+     "groupId": "g_hack",
+     "name": "Document on the run down on the show",
+     "owners": [
+      "u_taylor"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "2026-09-18",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789354502000
+    },
+    {
+     "id": "t_h09",
+     "groupId": "g_hack",
+     "name": "Get ID card + organize tables",
+     "owners": [
+      "u_jordan"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "2026-09-16",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789365826000
+    },
+    {
+     "id": "t_h10",
+     "groupId": "g_hack",
+     "name": "Update materials for closing ceremony",
+     "owners": [
+      "u_taylor"
+     ],
+     "status": "working",
+     "priority": "",
+     "due": "2026-09-18",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [
+      {
+       "name": "slides",
+       "owners": [],
+       "status": "working",
+       "due": "",
+       "id": "s_h10_0"
+      },
+      {
+       "name": "pictures",
+       "owners": [],
+       "status": "done",
+       "due": "",
+       "id": "s_h10_1"
+      },
+      {
+       "name": "event listings",
+       "owners": [],
+       "status": "done",
+       "due": "",
+       "id": "s_h10_2"
+      },
+      {
+       "name": "social media announments",
+       "owners": [],
+       "status": "done",
+       "due": "",
+       "id": "s_h10_3"
+      },
+      {
+       "name": "list of demos to send to partners",
+       "owners": [],
+       "status": "done",
+       "due": "",
+       "id": "s_h10_4"
+      }
+     ],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789436286000
+    },
+    {
+     "id": "t_h11",
+     "groupId": "g_hack",
+     "name": "Send venue information for hackathon",
+     "owners": [
+      "u_jordan"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789437341000
+    },
+    {
+     "id": "t_h12",
+     "groupId": "g_hack",
+     "name": "900 am arrival - iterate on linkedin posts on hackathon materials",
+     "owners": [
+      "u_taylor"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789440838000
+    },
+    {
+     "id": "t_h13",
+     "groupId": "g_hack",
+     "name": "Prepare logistics for opening ceremony",
+     "owners": [
+      "u_taylor",
+      "u_jordan",
+      "u_sam",
+      "u_casey",
+      "u_riley"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789441200000
+    },
+    {
+     "id": "t_h14",
+     "groupId": "g_hack",
+     "name": "Check in on track to ensure they understand requirements for during event responsibilities",
+     "owners": [
+      "u_taylor"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789441320000
+    },
+    {
+     "id": "t_h15",
+     "groupId": "g_hack",
+     "name": "Adjust schedule for sponsor",
+     "owners": [
+      "u_jordan"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789441509000
+    },
+    {
+     "id": "t_h16",
+     "groupId": "g_hack",
+     "name": "Details for registation",
+     "owners": [
+      "u_riley"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789492906000
+    },
+    {
+     "id": "t_h17",
+     "groupId": "g_hack",
+     "name": "What are the volunteers doing for Registation. is there a form? What are we doing with the data?",
+     "owners": [],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789492949000
+    },
+    {
+     "id": "t_h18",
+     "groupId": "g_hack",
+     "name": "Think about what to buy..",
+     "owners": [],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [
+      {
+       "name": "Name tags for volunteers",
+       "owners": [],
+       "status": "",
+       "due": "",
+       "id": "s_h18_0"
+      },
+      {
+       "name": "Plates, napkins, utensils?",
+       "owners": [],
+       "status": "",
+       "due": "",
+       "id": "s_h18_1"
+      },
+      {
+       "name": "What else?",
+       "owners": [],
+       "status": "",
+       "due": "",
+       "id": "s_h18_2"
+      },
+      {
+       "name": "Note: We have to call pizza in advance",
+       "owners": [],
+       "status": "",
+       "due": "",
+       "id": "s_h18_3"
+      }
+     ],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789493652000
+    },
+    {
+     "id": "t_h19",
+     "groupId": "g_hack",
+     "name": "Pick a volunteer captain",
+     "owners": [
+      "u_riley"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789529625000
+    },
+    {
+     "id": "t_h20",
+     "groupId": "g_hack",
+     "name": "Press article",
+     "owners": [
+      "u_jordan",
+      "u_casey",
+      "u_taylor"
+     ],
+     "status": "working",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789553963000
+    },
+    {
+     "id": "t_h21",
+     "groupId": "g_hack",
+     "name": "Judging criteria",
+     "owners": [
+      "u_sam",
+      "u_taylor"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789616174000
+    },
+    {
+     "id": "t_h22",
+     "groupId": "g_hack",
+     "name": "For registration, how will they sign in? in what way?",
+     "owners": [
+      "u_casey",
+      "u_riley",
+      "u_jordan"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789647650000
+    },
+    {
+     "id": "t_h23",
+     "groupId": "g_hack",
+     "name": "Rafle",
+     "owners": [
+      "u_casey",
+      "u_jordan"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789647659000
+    },
+    {
+     "id": "t_h24",
+     "groupId": "g_hack",
+     "name": "send schedule, poster, and registration in one email to the venue",
+     "owners": [
+      "u_taylor"
+     ],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789703673000
+    },
+    {
+     "id": "t_h25",
+     "groupId": "g_hack",
+     "name": "Train mentors",
+     "owners": [],
+     "status": "done",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789703854000
+    }
+   ]
+  },
+  "b_general": {
+   "id": "b_general",
+   "name": "Club general",
+   "kind": "board",
+   "description": "General board for the club: website, funding, partnerships.",
+   "createdAt": 1789167540000,
+   "views": [
+    "table",
+    "timeline"
+   ],
+   "columns": [
+    {
+     "type": "owners",
+     "title": "Assignees"
+    },
+    {
+     "type": "priority",
+     "title": "Priority"
+    },
+    {
+     "type": "due",
+     "title": "Deadline"
+    },
+    {
+     "type": "status",
+     "title": "Status"
+    },
+    {
+     "type": "tags",
+     "title": "Tags"
+    },
+    {
+     "type": "notes",
+     "title": "Notes"
+    }
+   ],
+   "tagOptions": [
+    "Bug",
+    "Feature",
+    "Improvement",
+    "Research"
+   ],
+   "groups": [
+    {
+     "id": "g_general",
+     "name": "Group",
+     "color": "#00c875"
+    }
+   ],
+   "tasks": [
+    {
+     "id": "t_g00",
+     "groupId": "g_general",
+     "name": "Fix website",
+     "owners": [],
+     "status": "",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [
+      "Bug"
+     ],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789167588000
+    },
+    {
+     "id": "t_g01",
+     "groupId": "g_general",
+     "name": "Grants",
+     "owners": [],
+     "status": "",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789167675000
+    },
+    {
+     "id": "t_g02",
+     "groupId": "g_general",
+     "name": "Board establishment",
+     "owners": [
+      "u_taylor"
+     ],
+     "status": "",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [
+      "Feature"
+     ],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789167720000
+    },
+    {
+     "id": "t_g03",
+     "groupId": "g_general",
+     "name": "Partnerships",
+     "owners": [
+      "u_jordan",
+      "u_taylor"
+     ],
+     "status": "",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [
+      "Feature"
+     ],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789168177000
+    },
+    {
+     "id": "t_g04",
+     "groupId": "g_general",
+     "name": "Establish website pricing for non profit",
+     "owners": [],
+     "status": "",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [
+      "Feature"
+     ],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789441984000
+    },
+    {
+     "id": "t_g05",
+     "groupId": "g_general",
+     "name": "Explore alumni relationships with organizers' colleges",
+     "owners": [],
+     "status": "",
+     "priority": "",
+     "due": "",
+     "start": "",
+     "tags": [
+      "Research"
+     ],
+     "notes": "",
+     "subtasks": [],
+     "updates": [],
+     "activity": [],
+     "createdAt": 1789453862000
+    }
+   ]
+  }
+ }
+}

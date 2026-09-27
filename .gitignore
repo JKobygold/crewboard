@@ -1,0 +1,7 @@
+node_modules/
+data/
+seed.local.json
+qa/failures/
+.DS_Store
+qa/report.md
+qa/history.jsonl
