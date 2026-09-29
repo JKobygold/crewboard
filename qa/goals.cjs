@@ -441,6 +441,116 @@ const GOALS = [
     const lanes = await p.$$eval('.lane', (ls) => ls.map((l) => Math.round(l.getBoundingClientRect().width)));
     expect(lanes.every((w) => w < 320), 'lanes too wide: ' + lanes);
   }],
+  ['Status labels: rename, add a custom label, use it, it shows in Kanban and the dashboard', async (p, srv) => {
+    await nav(p, 'b_general');
+    const tid = await tidOf(p, 'Grants');
+    await p.click(`[data-action="status"][data-tid="${tid}"]`); await p.click('#pop [data-action="status-edit"]');
+    await p.fill('#pop [data-label-i="0"]', 'In progress');
+    await p.click('#pop [data-action="label-add"]');
+    const rows = p.locator('#pop [data-label-i]'); await rows.last().fill('Waiting for review');
+    await p.click('#pop [data-action="label-color"][data-i="4"]'); await p.click('#pop [data-action="set-label-color"][data-i="4"][data-v="#9d50dd"]');
+    await p.click('#pop [data-action="labels-apply"]');
+    let s = await saved(srv);
+    const st = gen(s).statuses;
+    expect(st && st[0].label === 'In progress' && st[4].label === 'Waiting for review' && st[4].color === '#9d50dd', 'labels not saved: ' + JSON.stringify(st));
+    await p.click(`[data-action="status"][data-tid="${tid}"]`); await p.click(`#pop [data-action="set-status"][data-v="${st[4].key}"]`);
+    expect((await p.locator(`[data-action="status"][data-tid="${tid}"]`).innerText()).trim() === 'Waiting for review', 'cell does not show the custom label');
+    expect(findTask(gen(await saved(srv)), 'Grants').status === st[4].key, 'custom status not saved');
+    await p.click('[data-action="view-add"]'); await p.click('#pop [data-v="kanban"]');
+    const lanes = await p.$$eval('.lane-head', (e) => e.map((x) => x.textContent.replace(/\d+$/, '').trim()));
+    expect(lanes.includes('Waiting for review') && lanes.includes('In progress'), 'kanban lanes missing custom labels: ' + lanes);
+    await p.click('[data-action="nav-dash"]');
+    expect(await p.locator('.legend-item', { hasText: 'Waiting for review' }).count() === 1, 'dashboard legend missing the custom label');
+  }],
+  ['Marking Done plays the celebration on the label', async (p) => {
+    await nav(p, 'b_general');
+    const tid = await tidOf(p, 'Grants');
+    await p.click(`[data-action="status"][data-tid="${tid}"]`); await p.click('#pop [data-action="set-status"][data-v="done"]');
+    expect(await p.locator(`[data-action="status"][data-tid="${tid}"].celebrate`).count() === 1, 'no celebration class on the Done label');
+  }],
+  ['Drag a task row to another group and back into order', async (p, srv) => {
+    await nav(p, 'b_hackathon');
+    const tid = await tidOf(p, 'Judging criteria');
+    await p.hover(`.tr[data-row="${tid}"]`);
+    await p.locator(`.grip[data-drag="${tid}"]`).dragTo(p.locator('[data-add-task="g_hack_done"]'), { targetPosition: { x: 120, y: 20 } });
+    let t = findTask(hack(await saved(srv)), 'Judging criteria');
+    expect(t.groupId === 'g_hack_done', 'row did not move to the Completed group: ' + t.groupId);
+    // Drag it back: drop just above "Train mentors", the last Hackathon row, which sits right above the Completed group.
+    const lastId = await tidOf(p, 'Train mentors');
+    await p.hover(`.tr[data-row="${tid}"]`);
+    await p.locator(`.grip[data-drag="${tid}"]`).dragTo(p.locator(`.tr[data-row="${lastId}"]`), { targetPosition: { x: 200, y: 6 } });
+    const s = await saved(srv); const ts = hack(s).tasks; const i = ts.findIndex((x) => x.id === tid);
+    expect(ts[i].groupId === 'g_hack' && ts[i + 1] && ts[i + 1].id === lastId, 'row did not land above Train mentors in Hackathon: index ' + i + ', group ' + ts[i].groupId);
+  }],
+  ['Numbers, Checkbox, Link and Text columns: enter values, footer sums, link opens', async (p, srv) => {
+    await nav(p, 'b_general');
+    for (const v of ['number', 'checkbox', 'link', 'text']) { await p.click('[data-action="col-add"] >> nth=0'); await p.click(`#pop [data-action="add-col"][data-v="${v}"]`); }
+    const num = p.locator('[data-edit="number"]');
+    await num.nth(0).fill('1200'); await num.nth(0).press('Enter'); await num.nth(1).fill('300.5'); await num.nth(1).press('Enter');
+    await wait(500);
+    expect((await p.locator('.num.sum').first().innerText()) === '1,500.5', 'footer sum wrong: ' + (await p.locator('.num.sum').first().innerText()));
+    await p.locator('[data-action="check"]').first().click();
+    const link = p.locator('[data-edit="link"]').first(); await link.fill('example.com/docs'); await link.press('Enter');
+    const txt = p.locator('[data-edit="text"]').first(); await txt.fill('Owner note'); await txt.press('Enter');
+    const g = gen(await saved(srv));
+    expect(g.tasks[0].number === 1200 && g.tasks[1].number === 300.5, 'numbers not saved');
+    expect(g.tasks[0].checked === true, 'checkbox not saved');
+    expect(g.tasks[0].link === 'example.com/docs' && (await p.locator('.link-cell a').first().getAttribute('href')) === 'https://example.com/docs', 'link not saved or not linked');
+    expect(g.tasks[0].text === 'Owner note', 'text not saved');
+  }],
+  ['Resize a column by dragging its edge; width is saved', async (p, srv) => {
+    await nav(p, 'b_general');
+    const h = p.locator('[data-resize="priority"]').first(); const hb = await h.boundingBox();
+    await p.mouse.move(hb.x + 4, hb.y + hb.height / 2); await p.mouse.down(); await p.mouse.move(hb.x + 80, hb.y + hb.height / 2, { steps: 5 }); await p.mouse.up();
+    const w = gen(await saved(srv)).columns.find((c) => c.type === 'priority').w;
+    expect(w >= 180 && w <= 210, 'width not saved as expected: ' + w);
+  }],
+  ['Bulk export downloads a CSV of the selected tasks', async (p) => {
+    await nav(p, 'b_hackathon');
+    const cbs = p.locator('[data-action="sel"]'); await cbs.nth(0).click(); await cbs.nth(1).click();
+    const dl = p.waitForEvent('download', { timeout: 4000 });
+    await p.click('[data-action="bulk-export"]');
+    const d = await dl;
+    expect(/\.csv$/.test(d.suggestedFilename()), 'no csv download: ' + d.suggestedFilename());
+    const text = require('fs').readFileSync(await d.path(), 'utf8');
+    expect(text.split(/\r?\n/).filter(Boolean).length === 3 && text.includes('Task,Group,Owners,Status'), 'csv content wrong');
+  }],
+  ['Updates: @mention with the picker, like, reply; the mentioned person is notified', async (p, srv) => {
+    await nav(p, 'b_general');
+    const tid = await tidOf(p, 'Grants');
+    await p.click(`.upd-btn[data-tid="${tid}"]`);
+    await p.fill('#upd-text', 'Can you review this @Ri'); await wait(200);
+    await p.keyboard.press('Enter');
+    expect((await p.locator('#upd-text').inputValue()) === 'Can you review this @Riley Brooks ', 'mention not inserted');
+    await p.click('.composer button[type=submit]');
+    expect(await p.locator('.post .mention', { hasText: '@Riley Brooks' }).count() === 1, 'mention not highlighted');
+    await p.click('[data-action="like-update"]');
+    await p.click('[data-action="reply-open"]'); await p.fill('#reply-text', 'On it'); await p.press('#reply-text', 'Enter');
+    expect(await p.locator('.reply p', { hasText: 'On it' }).count() === 1, 'reply not shown');
+    const u = findTask(gen(await saved(srv)), 'Grants').updates[0];
+    expect(u.mentions.includes('u_riley') && u.likes.includes('u_jordan') && u.replies.length === 1, 'mention/like/reply not saved: ' + JSON.stringify(u));
+    await p.keyboard.press('Escape');
+    await p.click('[data-action="me-menu"]'); await p.click('#pop [data-action="set-me"][data-pid="u_riley"]');
+    await p.click('[data-action="notif"]');
+    expect(await p.locator('#pop', { hasText: 'mentioned you in “Grants”' }).count() === 1, 'mention notification missing');
+  }],
+  ['Calendar view: tasks on their dates, add a task from a day, month navigation', async (p, srv) => {
+    await nav(p, 'b_hackathon');
+    await p.click('[data-action="view-add"]'); await p.click('#pop [data-action="add-view"][data-v="calendar"]');
+    expect(await p.locator('.cal-day').count() === 42, 'calendar grid missing');
+    await p.click('[data-action="cal-next"]'); const h2 = await p.locator('.cal-head h2').innerText();
+    await p.click('[data-action="cal-today"]');
+    expect((await p.locator('.cal-head h2').innerText()) !== h2, 'month navigation did not change the month');
+    const dueCount = hack(await getState(srv.port)).tasks.filter((t) => t.due).length;
+    expect(dueCount > 0 && (await p.locator('.cal-ev').count()) >= 1, 'no events drawn');
+    const day = p.locator('.cal-day:not(.out) .cal-num').nth(10); const d = await day.getAttribute('data-v');
+    await day.click();
+    expect(await p.locator('.drawer').count() === 1, 'add from day did not open the task');
+    await p.fill('#d-title', 'Calendar task'); await p.keyboard.press('Enter');
+    const t = findTask(hack(await saved(srv)), 'Calendar task');
+    expect(t && t.due === d, 'task not created on that day: ' + (t && t.due));
+    expect(hack(await getState(srv.port)).views.includes('calendar'), 'calendar view not saved');
+  }],
   ['Phone width: no sideways page scroll; panel opens and closes', async (p) => {
     await p.setViewportSize({ width: 390, height: 844 }); await p.reload(); await p.waitForSelector('.shell');
     const sw = await p.evaluate(() => document.documentElement.scrollWidth);
