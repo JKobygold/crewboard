@@ -14,9 +14,9 @@ const STATES = [
   { name: 'general · Kanban', setup: async (p) => { await nav('b_general')(p); await p.click('[data-action="view-add"]'); await p.click('#pop [data-action="add-view"][data-v="kanban"]'); } },
   { name: 'general · search open', setup: async (p) => { await nav('b_general')(p); await p.click('[data-action="tb-search"]'); await p.fill('#tool-search', 'web'); await p.waitForTimeout(250); } },
   { name: 'hackathon · 2 rows selected', setup: async (p) => { await nav('b_hackathon')(p); const cb = p.locator('[data-action="sel"]'); await cb.nth(0).click(); await cb.nth(1).click(); } },
-  { name: 'task panel · Updates', scope: '#drawer-root', setup: async (p) => { await nav('b_hackathon')(p); await p.locator('[data-action="open-item"]').nth(10).click(); } },
-  { name: 'task panel · Subitems', scope: '#drawer-root', setup: async (p) => { await nav('b_hackathon')(p); await p.locator('[data-action="open-item"]').nth(10).click(); await p.click('[data-action="dtab"][data-v="subitems"]'); } },
-  { name: 'task panel · Activity', scope: '#drawer-root', setup: async (p) => { await nav('b_hackathon')(p); await p.locator('[data-action="open-item"]').nth(10).click(); await p.click('[data-action="dtab"][data-v="activity"]'); } },
+  { name: 'task panel · Updates', scope: '#drawer-root', setup: async (p) => { await nav('b_hackathon')(p); await p.locator('.upd-btn').nth(10).click(); } },
+  { name: 'task panel · Subitems', scope: '#drawer-root', setup: async (p) => { await nav('b_hackathon')(p); await p.locator('.upd-btn').nth(10).click(); await p.click('[data-action="dtab"][data-v="subitems"]'); } },
+  { name: 'task panel · Activity', scope: '#drawer-root', setup: async (p) => { await nav('b_hackathon')(p); await p.locator('.upd-btn').nth(10).click(); await p.click('[data-action="dtab"][data-v="activity"]'); } },
   { name: 'Dashboard', setup: async (p) => { await p.click('[data-action="nav-dash"]'); } },
   { name: 'My work', setup: async (p) => { await p.click('.rail [data-action="nav-mywork"]'); } },
   { name: 'Workspace · Members', setup: async (p) => { await p.click('.rail [data-action="nav-ws"]'); } },
@@ -24,9 +24,12 @@ const STATES = [
   { name: 'Invite dialog', scope: '#modal-root', setup: async (p) => { await p.click('.bh-actions [data-action="invite"]'); } },
   { name: 'Favorites panel', setup: async (p) => { await p.click('[data-action="fav"]'); await p.click('[data-action="rail-fav"]'); } },
   { name: 'Panel collapsed', setup: async (p) => { await p.click('[data-action="panel-close"]'); } },
+  { name: 'general · Calendar', setup: async (p) => { await nav('b_general')(p); await p.click('[data-action="view-add"]'); await p.click('#pop [data-action="add-view"][data-v="calendar"]'); } },
+  { name: 'task panel · Updates with a post', scope: '#drawer-root', setup: async (p) => { await nav('b_general')(p); await p.locator('.upd-btn').first().click(); await p.fill('#upd-text', 'First update'); await p.click('.composer button[type=submit]'); await p.waitForTimeout(150); } },
+  { name: 'status · Edit labels', scope: '#pop', setup: async (p) => { await nav('b_general')(p); await p.locator('[data-action="status"]').first().click(); await p.click('#pop [data-action="status-edit"]'); } },
 ];
 // Controls that legitimately change nothing visible when clicked in this exact state.
-const QUIET_OK = new Set(['focus-search', 'modal-bg', 'view', 'dtab', 'ws-tab', 'nav-board', 'nav-dash', 'nav-mywork', 'nav-ws']);
+const QUIET_OK = new Set(['focus-search', 'modal-bg', 'view', 'dtab', 'ws-tab', 'nav-board', 'nav-dash', 'nav-mywork', 'nav-ws', 'cal-today']);
 
 async function visibleActions(page, scope) {
   return page.evaluate((scope) => {

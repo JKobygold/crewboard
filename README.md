@@ -6,17 +6,18 @@ Everyone who opens the site works on the same boards; teammates' changes appear 
 
 - **Zero dependencies at runtime.** `server.js` is plain Node (18+), and the app in `public/` is plain HTML, CSS and JavaScript with no build step.
 - **Your data stays yours.** It is stored in one JSON file on your own server.
-- **Tested.** An automated QA loop clicks every control and checks 39 real workflows on every pull request.
+- **Tested.** An automated QA loop clicks every control and checks 53 real workflows on every pull request.
 
 ## Features
 
 | Area | What you get |
 |---|---|
-| Boards | Groups (collapsible, colored), tasks, subitems with their own owner/status/date, inline rename, undo for deletes |
-| Columns | Owner, Status, Priority, Due date, Timeline, Tags, Notes, Progress. Add, rename, hide or remove them per board |
-| Views | Main table, Cards, Kanban (drag between statuses), Timeline |
-| Working the board | Search, person and status/priority/tag filters, sort, group by status/person/priority, bulk actions |
-| People | Invite members, assign one or many, hand off a task with a note, updates thread and activity log per task |
+| Boards | Groups (collapsible, colored), tasks, subitems with their own owner/status/date, inline rename, drag rows between groups, undo for deletes |
+| Columns | Owner, Status, Priority, Due date, Timeline, Tags, Notes, Progress, Text, Numbers (with a sum footer), Checkbox, Link. Add, rename, resize, hide or remove them per board |
+| Status labels | Rename and recolor the labels per board, or add your own from a 30-color palette ("Edit labels" in the status menu). Marking something Done plays a small celebration |
+| Views | Main table, Cards, Kanban (drag between statuses, status battery), Timeline, Calendar |
+| Working the board | Search, person and status/priority/tag filters, sort, group by status/person/priority, bulk actions incl. CSV export, keyboard shortcuts (Ctrl+G collapse groups, Cmd/Ctrl+. toggle the side panel) |
+| People | Invite members, assign one or many, hand off a task with a note, updates thread with @mentions, likes and replies, activity log per task |
 | Overview | My work (everything assigned to a person, by date), notifications, dashboard (status, owner, overdue, due-date charts) |
 | Look | Dark and light themes, works on phones |
 
